@@ -30,7 +30,7 @@ spec:
           value: airflow.contrib.auth.backends.password_auth
         - name: AIRFLOW__API__AUTH_BACKEND
           value: airflow.contrib.auth.backends.password_auth
-        image: apache/airflow:1.10.10
+        image: quay.io/rbaya/airflow-k8s:latest
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 20
@@ -63,7 +63,7 @@ spec:
           value: postgresql://postgres:password@airflow-db:5432/postgres
         - name: AIRFLOW__CORE__EXECUTOR
           value: LocalExecutor
-        image: apache/airflow:1.10.10
+        image: quay.io/rbaya/airflow-k8s:latest
         imagePullPolicy: Always
         name: airflow-scheduler
         terminationMessagePath: /dev/termination-log
@@ -81,7 +81,7 @@ spec:
           value: postgresql://postgres:password@airflow-db:5432/postgres
         - name: AIRFLOW__CORE__EXECUTOR
           value: LocalExecutor
-        image: apache/airflow:1.10.10
+        image: quay.io/rbaya/airflow-k8s:latest
         imagePullPolicy: Always
         name: airflow-initdb
       restartPolicy: Always
