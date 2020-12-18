@@ -1,12 +1,15 @@
-# take Airflow base image
-FROM apache/airflow:1.10.12
+FROM python:3.6.3
 
-# add dependencies for http basic auth
-RUN pip install --user --upgrade apache-airflow[password]==1.10.12
+# Airflow setup                      
+ENV AIRFLOW_HOME=/app/airflow
+RUN pip install apache-airflow                      
 
-# add dags
-ADD dags /opt/airflow/dags
+RUN airflow initdb
 
-COPY entrypoint.sh /opt/airflow
+EXPOSE 8080
 
-CMD ["/entrypoint.sh"]
+WORKDIR AIRFLOW_HOME
+
+COPY entrypoint.sh .
+
+CMD ["entrypoint.sh"]
