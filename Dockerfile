@@ -4,7 +4,7 @@ FROM quay.io/bitnami/python:3.6.12
 ENV AIRFLOW_HOME=/app/airflow
 RUN pip install apache-airflow                      
 
-RUN airflow initdb
+RUN airflow db init
 
 EXPOSE 8080
 
