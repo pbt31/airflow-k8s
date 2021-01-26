@@ -4,12 +4,12 @@ FROM quay.io/bitnami/python:3.6.12
 ENV AIRFLOW_HOME=/app/airflow
 RUN pip install apache-airflow                      
 
-RUN airflow db init
+RUN apt-get update && apt-get -y install vim nano
 
 EXPOSE 8080
 
-WORKDIR AIRFLOW_HOME
+WORKDIR $AIRFLOW_HOME
 
 COPY entrypoint.sh .
 
-CMD ["entrypoint.sh"]
+ENTRYPOINT ["sh", "entrypoint.sh"]
